@@ -33,5 +33,11 @@ const fs = require('fs');
 var args = process.argv;
 
 console.log(fs.readFileSync(__dirname + '/../msg/startup.msg').toString().bold.yellow);
-
+main.initPool({
+    listenToProcessExits: true,
+    initialWorkers: 0,
+    maxWorkers:  4,
+    workLimit: 60,
+    queueSize: 5
+});
 main.startServer(args[2] || 7800);
